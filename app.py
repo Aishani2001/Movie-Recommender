@@ -7,7 +7,6 @@ Write your code in this editor and press "Run" button to execute it.
 '''
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 import seaborn as sns
 from collections import Counter
 from sklearn.model_selection import train_test_split
