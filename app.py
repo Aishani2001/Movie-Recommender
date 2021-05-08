@@ -7,11 +7,9 @@ Write your code in this editor and press "Run" button to execute it.
 '''
 import numpy as np
 import pandas as pd
-import seaborn as sns
 from collections import Counter
 from sklearn.model_selection import train_test_split
 import flask
-import difflib
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 movies = pd.read_csv('movies.csv')
