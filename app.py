@@ -53,9 +53,7 @@ def get_recommendations(Title):
     return_df['Title'] = tit
     return_df['All_Words'] = dat
     return return_df   
-@app.route('/')
-def home():
-    return render_template('mainpage.html')   
+  
 @app.route('/main', methods=['GET', 'POST'])
 
 def main():
