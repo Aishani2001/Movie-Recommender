@@ -1,10 +1,3 @@
-'''
-
-                            Online Python Compiler.
-                Code, Compile, Run and Debug python program online.
-Write your code in this editor and press "Run" button to execute it.
-
-'''
 import numpy as np
 import pandas as pd
 from collections import Counter
@@ -12,6 +5,7 @@ from sklearn.model_selection import train_test_split
 import flask
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+
 movies = pd.read_csv('movies.csv')
 app = flask.Flask(__name__, template_folder='templates')
 count = CountVectorizer()
@@ -59,8 +53,10 @@ def get_recommendations(Title):
     return_df['Title'] = tit
     return_df['All_Words'] = dat
     return return_df   
-    
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
+def home():
+    return render_template('mainpage.html')   
+@app.route('/main', methods=['GET', 'POST'])
 
 def main():
     if flask.request.method == 'GET':
