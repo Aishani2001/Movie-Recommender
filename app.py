@@ -54,7 +54,7 @@ def get_recommendations(Title):
     return_df['All_Words'] = dat
     return return_df   
   
-@app.route('/main', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 
 def main():
     if flask.request.method == 'GET':
