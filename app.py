@@ -6,8 +6,8 @@ import flask
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-movies = pd.read_csv('movies.csv')
 app = flask.Flask(__name__, template_folder='templates')
+movies = pd.read_csv('movies.csv')
 count = CountVectorizer()
 count_matrix = count.fit_transform(movies['All_Words'])
 
@@ -40,20 +40,6 @@ def recommendations(Title, cosine_sim = cosine_sim):
         
     return recommended_movies
 
-def get_recommendations(Title):
-    cosine_sim = cosine_similarity(count_matrix, count_matrix)
-    idx = indices[Title]
-    sim_scores = list(enumerate(cosine_sim[idx]))
-    sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-    sim_scores = sim_scores[1:11]
-    movie_indices = [i[0] for i in sim_scores]
-    tit = movies['Title'].iloc[movie_indices]
-    dat = movies['All_Words'].iloc[movie_indices]
-    return_df = pd.DataFrame(columns=['Title','All_Words'])
-    return_df['Title'] = tit
-    return_df['All_Words'] = dat
-    return return_df   
-  
 @app.route('/', methods=['GET', 'POST'])
 
 def main():
@@ -66,7 +52,7 @@ def main():
         #if m_name in all_titles:
             #return(flask.render_template('negative.html',name=m_name))
         
-        result_final = recommendations(m_name)
+        result_final = recommendations(m_name,cosine_sim=cosine_sim)
         names = []
         names.append(result_final)
         #for i in range(len(result_final)):
@@ -77,7 +63,3 @@ def main():
 
 if __name__ == '__main__':
     app.run()     
-        
-        
-        
-        
