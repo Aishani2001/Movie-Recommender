@@ -40,7 +40,7 @@ def recommendations(Title, cosine_sim = cosine_sim):
         
     return recommended_movies
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/main', methods=['GET', 'POST'])
 
 def main():
     if flask.request.method == 'GET':
