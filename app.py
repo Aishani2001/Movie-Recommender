@@ -26,17 +26,17 @@ def recommendations(Title, cosine_sim = cosine_sim):
     recommended_movies = []
     
     # gettin the index of the movie that matches the title
-    idx = indices[indices == Title].index[0]
+    idx = movies[movies['Title']==Title].index[0]  #indices[indices == Title].index[0]
 
     # creating a Series with the similarity scores in descending order
     score_series = pd.Series(cosine_sim[idx]).sort_values(ascending = False)
 
     # getting the indexes of the 10 most similar movies
     top_10_indexes = list(score_series.iloc[1:11].index)
-    
+
     # populating the list with the titles of the best 10 matching movies
     for i in top_10_indexes:
-        recommended_movies.append(list(movies.index)[i])
+        recommended_movies.append(all_titles[i])
         
     return recommended_movies
 
@@ -54,7 +54,7 @@ def main():
         
         result_final = recommendations(m_name,cosine_sim=cosine_sim)
         names = []
-        names.append(result_final)
+        names.extend(result_final)
         #for i in range(len(result_final)):
             #  names.append(result_final.iloc[i])
             #   dates.append(result_final.iloc[i])
